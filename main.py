@@ -1,28 +1,29 @@
 import flet as ft
 
 def main(page: ft.Page):
-    page.title = "Flet counter example"
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
-
-    txt_number = ft.TextField(value="0", text_align=ft.TextAlign.RIGHT, width=100)
-
-    def minus_click(e):
-        txt_number.value = str(int(txt_number.value) - 1)
-        page.update()
-
-    def plus_click(e):
-        txt_number.value = str(int(txt_number.value) + 1)
-        page.update()
-
+    img = ft.Image(
+        src=f"me.jpg",
+        width=45,
+        height=45,
+        fit=ft.ImageFit.CONTAIN,
+    )
+    
+    page.title = "NavigationBar Example"
+    page.navigation_bar = ft.NavigationBar(
+        destinations=[
+            ft.NavigationBarDestination(icon=ft.Icons.HOME_ROUNDED, label="Home"),
+            ft.NavigationBarDestination(icon=ft.Icons.WECHAT_ROUNDED, label="Chat"),
+            ft.NavigationBarDestination(icon=ft.Icons.SETTINGS_ROUNDED, label="Settings"),
+        ]
+    )
     page.add(
         ft.Row(
-            [
-                ft.IconButton(ft.Icons.REMOVE, on_click=minus_click),
-                txt_number,
-                ft.IconButton(ft.Icons.ADD, on_click=plus_click),
+            controls=[
+                img,
+                ft.Text("REANIER JAMES VERTUDEZ")
             ],
-            alignment=ft.MainAxisAlignment.CENTER,
+            alignment=ft.MainAxisAlignment.START
         )
     )
 
-ft.app(main)
+ft.app(target=main)
